@@ -1,0 +1,244 @@
+@CHARSET "UTF-8";
+body,ul,li,a{
+	margin:0;
+	padding:0;
+	color:rgba(0,0,0,0);
+	line-height: 24px;
+	font: 16px Helvetica Neue,Helvetica,PingFang SC,\5FAE\8F6F\96C5\9ED1,Tahoma,Arial,sans-serif;
+}
+.home{
+	margin: 0 auto;
+	font-size: 16px;
+	text-decoration:none;	
+}
+/*为页面顶层的内容设置样式*/
+.home-page-top{
+	position:relative;
+	border-bottom: 0px solid #33AECC;
+	height:45px;
+	background-color:#33AECC;
+	z-index:1000;
+}
+/*为顶层标题设置样式*/
+.page-logo{
+	margin-left: 10px;
+	color:#fff;
+	line-height:45px;
+	font-size:16px;
+}
+/*为用户设置样式*/
+.home-page-username{
+	float:right;
+	color:#fff;
+	line-height:45px;
+	margin-right:0,30px;
+}
+.username-content{
+	float:left;
+	margin:10px 30px;
+	margin-right:50px;
+	color:#fff;
+	list-style-type:none;
+	diaplay:inline;
+	
+}
+
+
+/*左侧菜单*/
+.home-side{
+position: fixed;
+display: block;
+top: 45px;
+bottom:0px;
+left:0px; 
+width: 200px;
+overflow-x: hidden;
+background-color: #393D49;
+color: #c2c2c2;
+z-index:999;
+text-decoration:none;	
+}
+.home-side::-webkit-scrollbar{
+	width: 0px; 
+	height: 10px;}
+.home-side-menu{
+	list-style: none; 
+	margin: 0; 
+	padding: 0; 
+	background-color: #393D49;
+	position: relative;
+	font-size: 14px;
+	text-decoration:none;	
+}
+.header-menu-item{
+	border-bottom:1px solid #2b2e37;
+	position: relative; 
+	padding-left:10px; 
+	color:#fff;
+	height:39px;
+	line-height:39px;
+	background:#2b2e37;
+	font-size:14px;
+	font-decoration:none;
+}
+.menu-item{
+	position: relative; 
+	margin: 0; 
+	padding: 0;
+	text-decoration:none!important;
+}
+.menu-item a{
+	padding: 12px 5px 12px 15px;
+	display:block;
+	border-left: 5px solid transparent; 
+	color: #c2c2c2;
+	border-bottom: 1px solid #e5e5e5;
+}
+.menu-item a span{
+	margin-left: 8px;
+	font-size:14px;
+	text-decoration:none;
+}
+.menu-item:hover > a,.menu-item.active > a{
+	color: #fff; 
+	background: #4E5465; 
+	border-left-color: #33AECC;
+	transition: all .3s; 
+	-webkit-transition: all .3s;
+}
+.menu-item a span li{ 
+	padding: 0;
+	margin-right: 10px;
+	float:right;
+	}
+.menu-item-child{
+	display: none; 
+	list-style: none; 
+	padding: 0; 
+	margin: 0; 
+	/* padding-left: 10px; */
+}
+.menu-item-child li a{
+	padding: 8px 5px 8px 30px;
+	display: block;
+	color: #c2c2c2;
+}
+.menu-item-child a span{
+	margin-left: 10px;
+	
+	
+	
+}
+
+.menu-item-child :active>a,.menu-item-child :hover>a{
+	padding:10px;
+	color: #fff;
+	background: #4E5465; 
+	border-left-color: #33AECC;
+	transition: all .3s; 
+	-webkit-transition: all .3s;
+}
+
+/* 为选项卡部分设置样式 */
+.layout-main{
+	position: absolute;
+	top: 45px;
+	bottom: 30px;
+	right: 0px;
+	left:200px;
+	width: auto;
+	overflow: hidden;
+	overflow-y: auto;
+	background-color: #ffffff;
+	text-decoration: none;
+}
+
+.layout-main-tab{
+	position: relative;
+	background: #efeef0;
+	border-bottom: 1px solid #ccc;
+	height: 39px;
+	line-height: 39px;
+    overflow: hidden;
+}
+
+.tab-btn{
+	position: absolute;
+	width: 45px;
+	height: 40px;
+	text-align: center;
+	color: #999;
+	z-index: 2;
+	top: 0px;
+	background: #f2f2f2;
+	border: 0;
+	outline: 0;
+	cursor: pointer;
+	border-right:1px solid;
+}
+
+.tab-nav{
+	margin-left: 40px;
+	width:100000px;
+	height: 40px;
+	line-height: 40px;
+	overflow: hidden;
+}
+
+.tab-nav-content{
+	float: left;
+	margin-left: 0px;
+}
+
+.tab-nav-content a{
+	color:#282828;
+	border-right: solid 1px #ccc;
+	display: block;
+	cursor:auto;
+	padding: 8px 15px;
+	float: left;
+	text-decoration: none;
+
+}
+
+.tab-nav-content a:hover{
+	color: #333;
+	text-decoration: none;
+}
+
+.tab-nav-content a.active{
+	color: #33AECC;
+	background: #fff;
+	text-decoration: none;
+}
+.tab-nav-content a i{
+	color:#ccc;
+	font-size:16px;
+	vertical-align:center;
+	text-decoration: none;
+}
+.tab-nav-content a i:hover{
+	color:#FF5722;
+	text-decoration: none;
+}
+.tab-nav-content a.active i:hover{
+	color: #FF5722;
+	text-decoration: none;
+}
+
+/*首页的内容显示布局*/
+.layout-main-body{
+	position: absolute;
+	top: 40px;
+	bottom:0px;
+	left: 0;
+	right: 0;
+	margin-bottom:0px;
+	overflow:auto;
+
+}
+
+
+
+
+

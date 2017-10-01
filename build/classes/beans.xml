@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Spring配置文件的根元素，使用spring-beans-4.0.xsd语义约束 -->
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+		<!--定义数据源Bean,使用C3P0数据源实现  -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	<!-- 指定连接数据库的驱动 -->
+	<property name="driverClass" value="com.mysql.jdbc.Driver"> </property>	
+	<!-- 指定连接数据库的URL -->
+	<property name="jdbcUrl" value="jdbc:mysql://localhost/db_mutiltask?useUnicode=true&amp;characterEncoding=UTF8"></property>
+	<!-- 指定连接数据库的用户名 -->
+	<property name="user" value="root"></property>
+	<!-- 指定连接数据库的密码 -->
+	<property name="password" value="404134355"></property>
+	<!--  指定连接数据库连接池的最大连接数-->
+	<property name="maxPoolSize" value="50"></property>
+	<!-- 指定连接数据库连接池的最小连接数 -->
+	<property name="minPoolSize" value="1"></property>
+	<!-- 指定连接数据库连接池的初始化连接数 -->
+	<property name="initialPoolSize" value="1"></property>
+	<!-- 指定连接数据库连接池的连接的最大空闲时间 -->
+	<property name="maxIdleTime" value="20"></property>
+	</bean>
+	<!-- 指定Hibernate的SessionFactory -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+	<property name="dataSource" ><ref bean="dataSource"></ref></property>
+	<property name="mappingResources">
+	<list>
+	<!-- 列出所有的持久化类映射文件 -->
+	    <value>com/ly/model/UserManager.hbm.xml</value>
+	    <value>com/ly/model/TableName.hbm.xml</value>
+	</list>	
+	</property>
+    <property name="hibernateProperties">
+    <!-- 设置Hibernate属性 -->
+    <props>
+        <prop key="hibernate.dialect"> org.hibernate.dialect.MySQLDialect</prop>
+        <prop key="hibernate.hbm2ddl.auto">update</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.format_sql">true</prop>
+    </props>
+    </property>	
+	</bean>
+	<!-- 自己需要配置 -->
+	<!-- 注入SessionFactory -->
+	<bean id="baseDao" class="com.ly.dao.BaseDao">
+	<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 为登陆界面的Action注入业务逻辑组件 -->
+	<bean id="loginAction" class="com.ly.control.LoginAction" scope="prototype">
+	<property name="ms" ref="ms"></property>
+	</bean>
+	
+	<!-- 为注册界面的Action注入业务逻辑组件 -->
+	<bean id="registerAction" class="com.ly.control.RegisterAction" scope="prototype">
+	<property name="ms" ref="ms"></property>
+	<!-- 为注册界面的Action注入用户表对应的JavaBean（UserManager） -->
+	<property name="user" ref="user"></property>
+	</bean>
+	
+	<!-- 为归一化的Action注入业务逻辑组件 -->
+	<bean id="norAction" class="com.ly.control.NorAction" scope="prototype">
+	<property name="ns" ref="ns"></property>
+	</bean>
+	
+	<bean id="tablenorAction" class="com.ly.control.TableNorAction" scope="prototype">
+	<property name="ns" ref="ns"></property>
+	<property name="tn" ref="tn"></property>
+	</bean>
+	
+	<!-- 为分发的Action注入业务逻辑组件 -->
+	<bean id="distributeAction" class="com.ly.control.DistributeAction" scope="prototype">
+	<property name="ds" ref="ds"></property>
+	</bean>
+	
+	<!-- 为汇总界面的action注入业务逻辑组件 -->
+	<bean id="gatherAction" class="com.ly.control.GatherAction" scope="prototype">
+ 	<property name="gs" ref="gs"></property> 
+	</bean>
+	
+	<!-- 归类界面的action -->
+	<bean id="classifyAction" class="com.ly.control.ClassifyAction" scope="prototype">
+	</bean>
+	
+	<!-- 管理员界面的action -->
+	<bean id="adminAction" class="com.ly.control.AdminAction" scope="prototype">
+	 	<property name="as" ref="as"></property> 
+	 	<property name="user" ref="user"></property> 
+	</bean>
+	
+	<!-- 为登陆界面的业务逻辑组件注入Dao -->
+	<bean id="ms" class="com.ly.service.MyServiceImpl">
+	<property name="udl" ref="udl"></property>
+	<property name="adl" ref="adl"></property>
+	</bean>
+	
+	<!-- 为归一化的业务逻辑组件注入Dao -->
+	<bean id="ns" class="com.ly.service.NorServiceImpl">
+	<property name="ndl" ref="ndl"></property>
+	<property name="tn" ref="tn"></property>
+	</bean>
+	
+	<!-- 分发的业务逻辑组件的bean -->
+	<bean id="ds" class="com.ly.service.DisServiceImpl"></bean>
+	
+	<!-- 汇总的业务逻辑组件的bean -->
+	<bean id="gs" class="com.ly.service.GatherServiceImpl">
+	<property name="ndl" ref="ndl"></property>
+	<property name="gdl" ref="gdl"></property>
+	</bean>
+	
+	<!-- 管理员的业务逻辑组件 -->
+	<bean id="as" class="com.ly.service.AdminServiceImpl">
+	<property name="adl" ref="adl"></property>
+	</bean>
+	
+	<!-- 管理Model -->
+	<bean id="tn" class="com.ly.model.TableName"></bean>
+	<bean id="user" class="com.ly.model.UserManager"></bean>
+	
+	<!-- 配置Dao层的Bean -->
+	<bean id="udl" class="com.ly.dao.UserDaoImpl" parent="baseDao"></bean>
+	<bean id="ndl" class="com.ly.dao.NorDaoImpl" parent="baseDao">
+	<property name="ndl" ref="ndl"></property></bean>
+	<bean id="gdl" class="com.ly.dao.GatherDaoImpl" parent="baseDao"></bean>
+	<bean id="adl" class="com.ly.dao.AdminDaoImpl" parent="baseDao"></bean>
+</beans>

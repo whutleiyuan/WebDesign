@@ -1,0 +1,57 @@
+  body{   
+    width: 100%;   
+    height: 100%;   
+    font-family: 'Open Sans',sans-serif;   
+    margin: 0; /*设置外补丁区为0*/ 
+    padding:0; /*设置内补丁区为0*/
+   /* background-image: url("images/login.jpg"); /*设置背景色*/  
+    background-color:#E4E8EC;
+    text-decoration:none!important;
+}   
+#loginin{   
+    position: absolute;   
+    top: 50%;   
+    left:50%;   
+    margin: -150px 0 0 -150px;   
+    width: 300px;   
+    height: 300px;   
+}   
+#loginin h1{   
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .7), 0px 2px 0 rgba(0, 0, 0, .5); /*设置多重阴影*/
+    letter-spacing: 4px; 
+    text-align:center; 
+    color:#666; 
+    line-height:3em; 
+    margin:16px 0 20px 0;  
+    font:normal 26px/1 Microsoft YaHei, sans-serif; 
+}     
+fieldset { 
+    border:none; 
+    padding:10px 8px 0; 
+} 
+fieldset input[id=username], fieldset input[id=password] { 
+    width:273px;   
+    height:35px;  
+    line-height:2em; 
+    font-size:12px;  
+    border-top: 1px solid #312E3D;   
+    border-left: 1px solid #312E3D;   
+    border-right: 1px solid #312E3D;   
+    border-bottom: 1px solid #56536A;  
+    padding:3px 4px 3px 2.2em; 
+}  
+fieldset input[type=checkbox] { 
+    margin-left:10px; 
+    vertical-align:middle; 
+} 
+fieldset span { 
+    font-size:12px; 
+}
+
+#chaolianjie {
+	display:block;
+	text-decoration:none!important;
+}
+
+ 
+</style> 

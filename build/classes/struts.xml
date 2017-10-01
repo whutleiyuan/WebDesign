@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<package name="leiyuan" extends="struts-default">
+		<action name="login" class="loginAction">
+			<result name="error">/WEB-INF/content/error.jsp</result>
+			<result name="success">/WEB-INF/content/navigation.jsp</result>
+		</action>
+		
+		<!-- 注册功能的物理映射 -->
+		<action name="register" class="registerAction">
+			<result name="input">/WEB-INF/content/welcome.jsp</result>
+			<result name="error">/WEB-INF/content/error.jsp</result>
+		</action>
+		
+		<!-- 注册界面返回的物理映射 -->
+		<action name="registerback" class="registerAction" method="back">
+			<result name="input">/WEB-INF/content/Loginin.jsp</result>
+		</action>
+		
+		<!-- 归一化的Action -->
+		<action name="normalization" class="norAction">
+			<result name="input">/WEB-INF/content/text.jsp</result>
+		</action>
+		
+		<!-- 归一化的待处理对话框的确定按钮访问的Action -->
+		<action name="tablenormalization" class="norAction" method="tablenor">
+			<result name="input">/WEB-INF/content/text.jsp</result>
+			<result name="error">/WEB-INF/content/norerror.jsp</result>
+		</action>		
+		
+		<!-- 归一化的待处理对话框的返回按钮访问的Action -->
+		<action name="back" class="norAction" method="backnor">
+			<result name="input">/WEB-INF/content/back.jsp</result>
+		</action>
+		
+		<!-- 归一化的待处理对话框的下一步按钮访问的Action -->
+		<action name="backandnext" class="norAction" method="next">
+			<result name="input">/WEB-INF/content/text.jsp</result>
+		</action>
+		
+		<!-- 归一化的表头处理对话框的上一步按钮访问的Action -->
+		<action name="upstep" class="norAction" method="upstep">
+			<result name="input">/WEB-INF/content/text.jsp</result>
+		</action>
+		
+		<!-- 归一化的表头处理对话框的下一步按钮访问的Action -->
+		<action name="tablesort" class="norAction" method="nextstep">
+			<result name="input">/WEB-INF/content/text.jsp</result>
+		</action>
+		
+		<!-- 归一化的各表归一化的上一步按钮访问的Action -->
+		<action name="norupstep" class="norAction" method="norupstep">
+			<result name="input">/WEB-INF/content/text.jsp</result>
+		</action>
+		
+		<!-- 归一化的各表归一化的下一步按钮访问的Action -->
+		<action name="nornextstep" class="norAction" method="nornextstep">
+			<result name="error">/WEB-INF/content/norerror.jsp</result>			
+		</action>
+
+		<action name="savetable" class="tablenorAction" method="saveTable">
+			<result name="input">/WEB-INF/content/norresult.jsp</result>
+			<result name="error">/WEB-INF/content/norerror.jsp</result>
+		</action>
+		
+		<!-- 邮件账户登陆的物理映射 -->
+		<action name="distribute" class="distributeAction" >
+			<result name="input">/WEB-INF/content/disresult.jsp</result>
+			<result name="error">/WEB-INF/content/norerror.jsp</result>
+		</action>
+		
+		<!--邮件分发的物理映射  -->
+		<action name="email" class="distributeAction" method="sentemail">
+			<result name="input">/WEB-INF/content/disresult.jsp</result>
+			<result name="error">/WEB-INF/content/norerror.jsp</result>
+		</action>
+		
+		<!-- 未汇总的物理映射 -->
+		<action name="gather" class="gatherAction" >
+			<result name="input">/WEB-INF/content/gatherresult.jsp</result>
+			<result name="error">/WEB-INF/content/norerror.jsp</result>
+		</action>
+		
+		<!-- 以汇总的物理映射 -->
+		<action name="date" class="gatherAction" method="hasgather">
+			<result name="input">/WEB-INF/content/gatherresult.jsp</result>
+			<result name="error">/WEB-INF/content/norerror.jsp</result>
+		</action>
+        
+        <!-- 归类的物理映射 -->
+        <action name="classify" class="classifyAction" method="classify">
+			<result name="input">/WEB-INF/content/gatherresult.jsp</result>
+		</action>
+		
+		<!-- 系统维护，查看所有用户的物理映射结果 -->
+		<action name="admin" class="adminAction" method="validateUser">
+			<result name="input">/WEB-INF/content/checkuser.jsp</result>
+			<result name="error">checkuser.jsp</result>		
+		</action>
+		
+		<!-- 系统维护，删除相应用户的映射结果 -->
+		<action name="deleteUser" class="adminAction" method="deleteUser">
+		 	<result name="input">/WEB-INF/content/checkuser.jsp</result>	
+		 	<result name="error" >/WEB-INF/content/error.jsp</result>		
+		</action>
+		
+		<!-- 系统维护 ，返回首页  -->
+		<action name="backnav" class="adminAction">
+		 	<result name="input">/WEB-INF/content/navigation.jsp</result>			
+		</action>
+		
+		<!-- 验证修改密码对应的物理映射结果 -->
+		<action name="modifypass" class="adminAction" method="modifypass">
+		 	<result name="input">/WEB-INF/content/modifypass.jsp</result>	
+		 	<result name="error">/WEB-INF/content/modifypasserror.jsp</result>			 			
+		</action>
+		
+		<!-- 修改密码对应的物理映射结果 -->
+		<action name="affirmmodify" class="adminAction" method="affirmmodify">
+		 	<result name="input">/WEB-INF/content/modifypass.jsp</result>	
+		 	<result name="error">/WEB-INF/content/modifypasssucc.jsp</result>			 			
+		</action>
+		<!-- 退出系统 -->
+		<action name="exitsystem" class="adminAction" method="exitSystem">
+		 	<result name="input">/WEB-INF/content/Loginin.jsp</result>			
+		</action>
+	</package>
+</struts>
